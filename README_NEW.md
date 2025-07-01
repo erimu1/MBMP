@@ -12,7 +12,7 @@ A professional, mood-based music player that curates radio stations based on you
 
 ## 🚀 Live Demo
 
-**Frontend**: [https://erimu.github.io/spotify-api](https://erimu.github.io/spotify-api)
+**Frontend**: [https://erimu1.github.io/MBMP](https://erimu1.github.io/MBMP)
 **Backend**: Deployed on Render (auto-deployed from main branch)
 
 ## 🛠️ Tech Stack
@@ -44,8 +44,8 @@ A professional, mood-based music player that curates radio stations based on you
 
 ```bash
 # Clone the repository
-git clone https://github.com/erimu/spotify-api.git
-cd spotify-api
+git clone https://github.com/erimu1/MBMP.git
+cd MBMP
 
 # Install dependencies
 npm install
@@ -70,4 +70,4 @@ npm run dev
 
 ---
 
-Built with ❤️ by [Erim Uludag](https://github.com/erimu)
+Built with ❤️ by [Erim Uludag](https://github.com/erimu1)
