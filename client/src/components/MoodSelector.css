@@ -1,0 +1,152 @@
+.mood-selector {
+  color: white;
+  padding: 1.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.mood-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+.mood-card {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.1), 
+    rgba(255, 255, 255, 0.05)
+  );
+  border: 2px solid transparent;
+  border-radius: 12px;
+  padding: 1.5rem 1rem;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  color: white;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(15px);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.mood-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.mood-icon {
+  width: 20px;
+  height: 20px;
+  color: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s ease;
+}
+
+.mood-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    var(--mood-gradient-start), 
+    var(--mood-gradient-end)
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.mood-card:hover {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.2), 
+    rgba(255, 255, 255, 0.1)
+  );
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.3),
+    0 0 15px var(--mood-color);
+}
+
+.mood-card:hover .mood-icon-container {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.mood-card:hover .mood-icon {
+  color: white;
+  transform: scale(1.1);
+}
+
+.mood-card:hover::before {
+  opacity: 0.2;
+}
+
+.mood-card.active {
+  border-color: var(--mood-color);
+  background: linear-gradient(135deg, 
+    var(--mood-gradient-start), 
+    var(--mood-gradient-end)
+  );
+  box-shadow: 
+    0 0 20px rgba(255, 255, 255, 0.2), 
+    0 0 40px var(--mood-color);
+  transform: translateY(-2px) scale(1.05);
+}
+
+.mood-card.active .mood-icon-container {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.mood-card.active .mood-icon {
+  color: white;
+}
+
+.mood-card.active::before {
+  opacity: 0.3;
+}
+
+.mood-card:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.mood-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: center;
+  text-transform: capitalize;
+  letter-spacing: 0.5px;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.loading-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 28px;
+  height: 28px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
