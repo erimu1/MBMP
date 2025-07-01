@@ -1,0 +1,11 @@
+{
+  "name": "mbmp-api",
+  "description": "Backend API for MBMP - Mood Based Music Player",
+  "version": "1.0.0",
+  "engines": {
+    "node": "18.x"
+  },
+  "scripts": {
+    "start": "node server.js"
+  }
+}
