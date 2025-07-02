@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/MBMP/static/css/main.6c5f5678.css",
-    "main.js": "/MBMP/static/js/main.fbd044bd.js",
+    "main.css": "/MBMP/static/css/main.e448e285.css",
+    "main.js": "/MBMP/static/js/main.a75485d6.js",
     "index.html": "/MBMP/index.html",
-    "main.6c5f5678.css.map": "/MBMP/static/css/main.6c5f5678.css.map",
-    "main.fbd044bd.js.map": "/MBMP/static/js/main.fbd044bd.js.map"
+    "main.e448e285.css.map": "/MBMP/static/css/main.e448e285.css.map",
+    "main.a75485d6.js.map": "/MBMP/static/js/main.a75485d6.js.map"
   },
   "entrypoints": [
-    "static/css/main.6c5f5678.css",
-    "static/js/main.fbd044bd.js"
+    "static/css/main.e448e285.css",
+    "static/js/main.a75485d6.js"
   ]
 }
