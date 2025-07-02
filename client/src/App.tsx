@@ -3,7 +3,7 @@ import MoodSelector from './components/MoodSelector';
 import MusicPlayer from './components/MusicPlayer';
 import PlaylistView from './components/PlaylistView';
 import './App.css';
-import { API_BASE_URL } from './config';
+import { RADIO_BROWSER_API } from './config';
 
 export interface Track {
   id: string;
@@ -39,20 +39,78 @@ const App: React.FC = () => {
   const [currentMoodColor, setCurrentMoodColor] = useState('#667eea');
   const [currentMoodGradient, setCurrentMoodGradient] = useState(['#667eea', '#764ba2']);
 
+  // Mood mappings for direct API calls
+  const moodMappings = {
+    happy: {
+      tags: ['pop', 'dance', 'upbeat', 'party'],
+      color: '#FFD700',
+      gradient: ['#FFD700', '#FFA500']
+    },
+    sad: {
+      tags: ['blues', 'melancholy', 'sad', 'emotional'],
+      color: '#4682B4',
+      gradient: ['#4682B4', '#2F4F4F']
+    },
+    energetic: {
+      tags: ['rock', 'electronic', 'high energy', 'workout'],
+      color: '#FF4500',
+      gradient: ['#FF4500', '#FF6347']
+    },
+    calm: {
+      tags: ['ambient', 'chill', 'relaxing', 'peaceful'],
+      color: '#20B2AA',
+      gradient: ['#20B2AA', '#48D1CC']
+    },
+    romantic: {
+      tags: ['love', 'romantic', 'smooth', 'jazz'],
+      color: '#FF69B4',
+      gradient: ['#FF69B4', '#FFB6C1']
+    },
+    focused: {
+      tags: ['instrumental', 'classical', 'study', 'concentration'],
+      color: '#9370DB',
+      gradient: ['#9370DB', '#BA55D3']
+    },
+    nostalgic: {
+      tags: ['oldies', 'retro', 'vintage', '80s'],
+      color: '#CD853F',
+      gradient: ['#CD853F', '#DEB887']
+    },
+    adventurous: {
+      tags: ['world', 'exotic', 'travel', 'adventure'],
+      color: '#32CD32',
+      gradient: ['#32CD32', '#90EE90']
+    }
+  };
+
   const handleMoodSelect = async (mood: string) => {
     setSelectedMood(mood);
     setLoading(true);
     
     try {
-      const response = await fetch(`${API_BASE_URL}/api/music/${mood}`);
-      const data = await response.json();
+      const moodData = moodMappings[mood as keyof typeof moodMappings];
+      const tag = moodData.tags[0]; // Use first tag for search
       
-      if (data.stations && data.stations.length > 0) {
-        setPlaylist(data.stations);
-        setFilteredPlaylist(data.stations);
-        setCurrentTrack(data.stations[0]);
-        setCurrentMoodColor(data.moodData.color);
-        setCurrentMoodGradient(data.moodData.gradient || [data.moodData.color, '#764ba2']);
+      // Call RadioBrowser API directly
+      const response = await fetch(`${RADIO_BROWSER_API}/stations/bytag/${tag}?limit=20&hidebroken=true`);
+      const stations = await response.json();
+      
+      if (stations && stations.length > 0) {
+        // Transform RadioBrowser data to our format
+        const transformedStations = stations.map((station: any, index: number) => ({
+          id: station.stationuuid || `${mood}-${index}`,
+          name: station.name || 'Unknown Station',
+          artist: station.country || 'Radio Station',
+          url: station.url_resolved || station.url,
+          duration: '∞',
+          mood: mood
+        }));
+        
+        setPlaylist(transformedStations);
+        setFilteredPlaylist(transformedStations);
+        setCurrentTrack(transformedStations[0]);
+        setCurrentMoodColor(moodData.color);
+        setCurrentMoodGradient(moodData.gradient);
       }
     } catch (error) {
       console.error('Error fetching music:', error);

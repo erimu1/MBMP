@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './MoodSelector.css';
-import { API_BASE_URL } from '../config';
 
 interface Mood {
   name: string;
@@ -88,17 +87,19 @@ const MoodSelector: React.FC<MoodSelectorProps> = ({ selectedMood, onMoodSelect,
   };
 
   useEffect(() => {
-    const fetchMoods = async () => {
-      try {
-        const response = await fetch(`${API_BASE_URL}/api/moods`);
-        const data = await response.json();
-        setMoods(data);
-      } catch (error) {
-        console.error('Error fetching moods:', error);
-      }
-    };
-
-    fetchMoods();
+    // Hardcoded moods data - no backend needed
+    const moodsData = [
+      { name: 'happy', color: '#FFD700', gradient: ['#FFD700', '#FFA500'], icon: '😊', tags: ['pop', 'dance', 'upbeat'] },
+      { name: 'sad', color: '#4682B4', gradient: ['#4682B4', '#2F4F4F'], icon: '😢', tags: ['blues', 'melancholy'] },
+      { name: 'energetic', color: '#FF4500', gradient: ['#FF4500', '#FF6347'], icon: '⚡', tags: ['rock', 'electronic'] },
+      { name: 'calm', color: '#20B2AA', gradient: ['#20B2AA', '#48D1CC'], icon: '🧘', tags: ['ambient', 'chill'] },
+      { name: 'romantic', color: '#FF69B4', gradient: ['#FF69B4', '#FFB6C1'], icon: '💕', tags: ['love', 'romantic'] },
+      { name: 'focused', color: '#9370DB', gradient: ['#9370DB', '#BA55D3'], icon: '🎯', tags: ['instrumental', 'classical'] },
+      { name: 'nostalgic', color: '#CD853F', gradient: ['#CD853F', '#DEB887'], icon: '📻', tags: ['oldies', 'retro'] },
+      { name: 'adventurous', color: '#32CD32', gradient: ['#32CD32', '#90EE90'], icon: '🌍', tags: ['world', 'exotic'] }
+    ];
+    
+    setMoods(moodsData);
   }, []);
 
   const formatMoodName = (name: string) => {

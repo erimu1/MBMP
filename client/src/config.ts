@@ -1,6 +1,4 @@
-// API Configuration
-const API_BASE_URL = process.env.NODE_ENV === 'production' 
-  ? 'https://mbmp-api.onrender.com' // Will deploy backend here
-  : '';
+// API Configuration - Direct RadioBrowser API calls
+const RADIO_BROWSER_API = 'https://de1.api.radio-browser.info/json';
 
-export { API_BASE_URL };
+export { RADIO_BROWSER_API };

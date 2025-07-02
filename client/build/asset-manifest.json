@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/MBMP/static/css/main.6c5f5678.css",
-    "main.js": "/MBMP/static/js/main.fa4d01bc.js",
+    "main.js": "/MBMP/static/js/main.fbd044bd.js",
     "index.html": "/MBMP/index.html",
     "main.6c5f5678.css.map": "/MBMP/static/css/main.6c5f5678.css.map",
-    "main.fa4d01bc.js.map": "/MBMP/static/js/main.fa4d01bc.js.map"
+    "main.fbd044bd.js.map": "/MBMP/static/js/main.fbd044bd.js.map"
   },
   "entrypoints": [
     "static/css/main.6c5f5678.css",
-    "static/js/main.fa4d01bc.js"
+    "static/js/main.fbd044bd.js"
   ]
 }
