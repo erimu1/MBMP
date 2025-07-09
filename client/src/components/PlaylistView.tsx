@@ -117,15 +117,11 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
           >
             <div className="track-info">
               <div className="track-number">{index + 1}</div>
-              <img 
-                src={track.image} 
-                alt={track.name} 
-                className="track-image"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.src = `https://picsum.photos/300/300?random=${index + Date.now()}`;
-                }}
-              />
+              <div className="track-image">
+                <svg viewBox="0 0 24 24" fill="currentColor" className="radio-icon">
+                  <path d="M20,6C20.58,6 21.05,6.2 21.42,6.59C21.8,7 22,7.45 22,8V20C22,20.55 21.8,21 21.42,21.41C21.05,21.8 20.58,22 20,22H4C3.42,22 2.95,21.8 2.58,21.41C2.2,21 2,20.55 2,20V8C2,7.45 2.2,7 2.58,6.59C2.95,6.2 3.42,6 4,6H8V4C8,3.42 8.2,2.95 8.59,2.58C9,2.2 9.45,2 10,2H14C14.55,2 15,2.2 15.41,2.58C15.8,2.95 16,3.42 16,4V6H20M4,8V20H20V8H4M6,12C6.55,12 7,11.55 7,11C7,10.45 6.55,10 6,10C5.45,10 5,10.45 5,11C5,11.55 5.45,12 6,12M18,16H8V14H18V16M18,12H10V10H18V12Z" />
+                </svg>
+              </div>
               <div className="track-details">
                 <div className="track-name">
                   {highlightText(track.name, searchQuery || '')}

@@ -180,11 +180,20 @@
   gap: 1rem;
 }
 
-.current-track-info img {
+.current-track-info .track-thumbnail {
   width: 60px;
   height: 60px;
   border-radius: 8px;
-  object-fit: cover;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.current-track-info .radio-icon {
+  width: 32px;
+  height: 32px;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .track-details h4 {
